@@ -19,9 +19,13 @@ const App = () => {
     setdetails('')
   }
 
+  
 
-   const deleteNote =() => {
-      
+   const deleteNote =(idx) => {
+      const Copytask = [...Task];
+      Copytask.splice(idx,1)
+      setTask(Copytask)
+
    }
 
   
@@ -70,12 +74,14 @@ const App = () => {
       <div className='flex flex-wrap gap-3 mt-6 overflow-auto h-full'>
         {Task.map(function(elem , idx){
           return (
-            <div key={idx} className='relative h-52 w-40 rounded-xl text-black p-4 bg-cover flex flex-col justify-between bg-[url("https://static.vecteezy.com/system/resources/thumbnails/010/793/873/small/a-lined-note-paper-covered-with-transparent-tape-on-a-yellow-background-with-a-white-checkered-pattern-free-png.png")]'>
+            <div key={idx} className=" flex justify-between flex-col items-start relative h-52 w-40 bg-cover rounded-xl text-black pt-9 pb-4 px-4 bg-[url('https://static.vecteezy.com/system/resources/thumbnails/010/793/873/small/a-lined-note-paper-covered-with-transparent-tape-on-a-yellow-background-with-a-white-checkered-pattern-free-png.png')]">
               {/* <h2 onClick={removeElem} className='absolute top-5 right-3 text-xs p-1 bg-red-600 rounded-full mt-4 '><X size={16} strokeWidth={2.75}/></h2> */}
               <div><h1 className='mt-5 leading-tight text-xl font-bold break-words'>{elem.title}</h1>
               <p className='mt-2 leading-tight font-medium text-gray-700 break-words'>{elem.details}</p>
               </div>
-              <button  onClick={deleteNote} className='w-full cursor-pointer active:scale-95 bg-red-700 py-1 text-white text-xs rounded-xs'>delete note</button>
+              <button  onClick={() => {
+                deleteNote(idx)
+              }} className='w-full cursor-pointer active:scale-95 bg-red-700 py-1 text-white text-xs rounded '>delete note</button>
             </div>
           )
         })} 
